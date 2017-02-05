@@ -1,0 +1,23 @@
+
+service: a-serverless-service
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  stage: dev
+  region: ap-southeast-1
+
+functions:
+  helloWorld:
+    handler: handler.helloWorld
+    events:
+     - http:
+        path: hello/world
+        method: get
+
+plugins:
+  - serverless-webpack
+
+custom:
+  webpack: ./webpack.config.js
+  webpackIncludeModules: true
